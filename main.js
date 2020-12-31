@@ -5,7 +5,6 @@ var cors = require('cors');     //클라이언트에서 ajax로 요청하면 COR
 var app = express();
 
 app.use(cors())
-//app.engine('html', require('ejs'.renderFile))
 app.use(express.static(__dirname))
 app.set('view engine', 'ejs')
 //app.set('views','./views')

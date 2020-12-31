@@ -7,35 +7,77 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+    <script src="public/js/chat.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <style>
+        .main_img{
+            width: 50%;
+            position:absolute;
+            margin-left: 25%;
+            margin-top:10px;
+        }
+        #disappear{
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding-top: 10%;
+        }
+        input[type=text]{
+            border-radius: 3px;
+            border: 1px black solid;
+            height: 30px;
+        }
+        .btn{
+            color:white;
+        }
+        .btn:hover{
+            background-color: #9ebae2 ;
+            color: white;
+        }
+    </style>
+
 </head>
 <body>
-    <div>
-        <input type="text" id="hostInput" value="localhost">
-        <input type="text" id="portInput" value='2000'>
-        <input type="button" id="connectButton" value="연결하기">
+    <div class="main_img" id="disappear2">
+        <img src="./public/image/main.png" style="width: 100%;">
+    </div>
+    <div id="disappear">
+        <div>
+            <img src="/public/image/logo.png">
+            <br>
+            <br>
+            <input type="text" id="hostInput" value="localhost">
+            <input type="text" id="portInput" value='2000'>
+        </div>
+        <br>
+        <br>
+            <input type="text" id="nickname" value="닉네임을 입력하세요" style="width: 300px;">
+        <br>
+        <br>
+        <input class="btn" type="button" id="connectButton" value="연결하기" style="width: 300px; background-color: #9ebae2;">
     </div>
 
-    <div>
-        <div>
-            <span>보내는 사람 아이디:</span>
-            <input type="text" id="senderInput" value="test01">
+    <div style=" border: 1px solid black; width: 40%; margin-left: 30%; padding-top: 50px;">
+        <img src="./public/image/logo.png" style="width: 100%;">
+
+        <div style="display: none;">
             <span>받는 사람 아이디:</span>
             <input type="text" id="recepientInput" value="ALL">
         </div>
 
-        <div>
-            <span>메시지 데이터:</span>
-            <input type="text" id="dataInput" value="안녕!">
-        </div>
+            <span>메시지 입력:</span>
+            <input type="text" id="dataInput" value="" style="width: 50%;">
+        <input class='btn' type="button" id="sendButton" value="전송" style="background-color: #b2dffc; width: 200px;">
+
         <br>
-        <input type="button" id="sendButton" value="전송">
+        <div id="result" style="overflow: auto;"></div>
+    
     </div>
 
-    <p>결과:</p>
-    <div id="result"></div>
 
 
-    <script>
+    <!-- <script>
         var host;
         var port;
         var socket;
@@ -101,6 +143,6 @@
             }
         }
 
-    </script>
+    </script> -->
 </body>
 </html>
