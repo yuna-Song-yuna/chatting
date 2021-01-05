@@ -25,12 +25,12 @@ $(function(){
 
     //전송 버튼을 클릭하면 처리
     $("#sendButton").bind('click', function(event){
-        // var sender = $('#nickname').val();
+        var sender = $('#nickname').val();
         var recepient = $('#recepientInput').val();
         var data = $('#dataInput').val();
 
         // var output = {sender:sender, recepient:recepient, command:'chat', type:'text', data:data}
-        var output = {recepient:recepient, data:data}
+        var output = {recepient:recepient, data:data, sender:sender}
         console.log('서버로 보낼 데이터:'+JSON.stringify(output));
 
         if(socket == undefined){
@@ -46,7 +46,7 @@ $(function(){
 
 //서버에 연결하는 함수 정의
 function connectToServer(){
-    var name = $("#nickname").val();
+    //var name = $("#nickname").val();
 
     var options = {'forceNew': true};
     var url = 'http://'+host+':'+port;
@@ -56,10 +56,11 @@ function connectToServer(){
         console.log('소켓 연결 완료')
         //println('웹 소켓 서버에 연결됨'+ url);
 
+        //서버에서 보낸 메시지 클라이언트에서 받는 중
         socket.on('message', function(message){
             console.log(JSON.stringify(message));
             // println('<p>수신 메시지:'+message.sender+','+message.recepient+','+message.command+','+message.type+','+message.data+'</p>')
-            println('<p>'+name+': '+message.data+'</p>')
+            println('<p>'+message.sender+':'+message.data+'</p>')
         })
     })
 
